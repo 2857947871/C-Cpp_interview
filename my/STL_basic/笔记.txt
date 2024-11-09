@@ -1,0 +1,36 @@
+一、vector
+1. 构造函数
+    vector(): 创建一个空的vec
+    vector(int nSize): 创建一个vec, 元素个数为nSize
+    vector(int nSize, const T &value): 创建一个vec, 元素个数为nSize, 值均为value
+    vector(int nSize, vector<T> vec): 创建二维vec
+    vector<vector<int>> vec(3, vector<int>(4)): 创建3行4列的vec
+
+2. 增
+    void push_back(const T &x): 向量尾部增加一个元素x
+    iterator insert(iterator it, const T &x): it迭代器指向元素前增加一个元素x
+
+3. 删
+    iterator erase(iterator it): 删除vec中it迭代器指向的元素
+    void pop_back(): 删除最后一个元素
+    void clear(): 清空
+
+4. 改/查
+    at(int pos) or [int pos]
+    front(): 返回首元素的引用
+    back(): 返回尾元素的引用
+    遍历:
+    注: 循环的是迭代器的指针, 因此要解引用进行取值
+        for (auto it = vec.begin(); it < vec.end(); ++it) {
+            std::cout << *it << std::endl;
+        }
+
+5. 其他重要函数
+    capacity: 当前vec分配的大小
+    size: 当前已有数据的大小
+    resize: 改变当前使用数据的大小, 如果它比当前使用的大, 填充默认值
+    empty: vec是否为空
+    swap: 与另一个vec交换数据
+
+二、unordered_map
+1. 构造函数
