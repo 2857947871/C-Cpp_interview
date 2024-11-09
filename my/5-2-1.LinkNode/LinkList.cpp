@@ -22,13 +22,12 @@ public:
     ~LinkList_with_head() {
         LinkNode *pDel = nullptr;
         LinkNode *pTmp = pHead;
-        while (pTmp->pNext != nullptr) {
+        while (pTmp != nullptr) {
             pDel = pTmp;
             pTmp = pTmp->pNext;
+            cout << "free: " << pDel->data << endl;
             delete pDel;
         }
-
-        delete pHead;
     }
 public:
     bool is_Empty() {
