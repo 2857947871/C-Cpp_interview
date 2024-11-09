@@ -24,7 +24,7 @@ int main() {
     // vector<int>: 数据类型
     // v1: 变量名(实例化对象)
     vector<int> v0;                 // 空的vec
-    vector<int> v1{0, 1, 2, 3, 4};  // 5个元素
+    vector<int> v1({0, 1, 2, 3});   // 自行赋值初始化
     vector<int> v2(10);             // 10个元素，每个元素为0
     vector<int> v3(10, 5);          // 10个元素，每个元素为5
     vector<vector<int>> v4

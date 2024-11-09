@@ -1,10 +1,13 @@
 一、vector
 1. 构造函数
+    注: vector<int> v1({0, 1, 2, 3, 4});
+    vector<int>: 数据类型 
+    v1({0, 1, 2, 3, 4}): 构造函数
     vector(): 创建一个空的vec
     vector(int nSize): 创建一个vec, 元素个数为nSize
     vector(int nSize, const T &value): 创建一个vec, 元素个数为nSize, 值均为value
     vector(int nSize, vector<T> vec): 创建二维vec
-    vector<vector<int>> vec(3, vector<int>(4)): 创建3行4列的vec
+        eg: vector<vector<int>> vec(3, vector<int>(4)): 创建3行4列的vec
 
 2. 增
     void push_back(const T &x): 向量尾部增加一个元素x
@@ -34,3 +37,48 @@
 
 二、unordered_map
 1. 构造函数
+    unordered_map(): 默认构造函数
+    unordered_map(std::initializer_list<T>): 列表初始化
+    std::unordered_map map = 
+        {{"boyfriend", true}, {"cat}, false}: 自行赋值
+    unordered_map(iterator first, iterator last): 迭代器范围内的值打入来初始化
+    unordered_map(const unordered_map &map): 拷贝构造
+    unordered_map(const unordered_map &&map): 移动构造(移动构造函数将一个unordered_map的资源转移到另一个unordered_map中)
+
+2. 增/改
+    insert(std::initializer_list<std::pair<T1, T2>>)
+        eg: map.insert({{"boyfriend", true}, {"cat", false}})
+    insert(std::make_pair("girlfriend", false))
+        eg: map.insert(std::make_pair("girlfriend", false))
+    [], 不存在的key会直接增加进map
+        eg: map["a"] = 1
+    
+3. 删
+    map.erase(map.begin()): 根据iterator删除
+    map.erase("boyfriend"): 根据key删除
+    map.clear(): 清空
+注:
+    begin() 返回的是 unordered_map 中的第一个元素的迭代器, 但由于 unordered_map 无序, 第一个元素不一定是插入的第一个键值对。
+假设当前 umap_0 的内容是 {1, "One"}, {2, "Two"}, 如果调用 umap_0.erase(umap_0.begin());
+它会删除当前 begin() 指向的键值对, 比如 {1, "One"} 或 {2, "Two"}, 具体取决于哈希表的存储状态。
+
+4. 查
+    map.at(key) or map[key]
+    iterator find(const key_type &k)
+
+5. 其他重要函数
+    size: 当前已有数据的大小
+    empty: 是否为空
+    swap: 与另一个unordered_map交换
+    count: key的数量
+
+三、map
+注: 与unordered_map不同, map是有序的, 得益于红黑树
+1. 自定义排序方法: 
+    默认情况下, map调用std::less<T>, 根据key的大小, 进行升序排序
+    自定义: 使用运算符重载
+
+2. 查
+注: map是有序的, 可以查出大于或小于某个阈值的起始迭代器位置
+    map.lower_bound(20) // 返回刚好大于等于20的下一个元素的迭代器
+    map.upper_bound(10) // 返回刚好大于20的下一个元素的迭代器
