@@ -1,7 +1,6 @@
 #include <map>
 #include <string>
 #include <iostream>
-
 using namespace std;
 
 template <typename T1, typename T2, typename Compare>

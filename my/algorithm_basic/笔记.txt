@@ -1,0 +1,27 @@
+一、填充类
+1. fill
+源码:
+    tempate<class ForwardIt, class T>
+    void fill(ForwardIt first, ForwardIt last, const T &value) {
+        for (; first != last; ++first) {
+            *first = value;
+        }
+    }
+
+用法:
+    std::vector<int> a;
+    std::fill(a.begin(), a.end(), 1);
+
+2. generate
+源码:
+    template<class ForwardIterator, class Generator>
+    void generate(ForwardIterator first, ForwardIterator last, Generator gen) {
+        while(first != last) {
+            *first = gen();
+            first++;
+        }
+    }
+
+用法:
+    generate(begin, end, func) / generate_n(begin, n, func)
+    使用func生成数据填充到某容器的begin到end/前n个位置中
