@@ -25,3 +25,43 @@
 用法:
     generate(begin, end, func) / generate_n(begin, n, func)
     使用func生成数据填充到某容器的begin到end/前n个位置中
+
+二、变换类
+    transform函数支持unary和binary操作, 并且支持inplace
+    unary: 针对一个容器中的每个元素进行操作，每次操作只有一个输入
+        eg: 每个元素应用一个简单的操作（乘以 2）
+    binary: 需要两个容器（或一个容器和一个常量），每次操作需要两个输入值
+        eg: 使用两个输入序列 vec1 和 vec2，将它们的每对元素相加
+    inplace: 原地修改, 无需新申请内存空间
+
+1. unary
+源码:
+    template <class InputIterator, class OutputIterator, class UnaryOperation>
+    OutputIterator transfrom(InputIterator first1, InputIterator last1,
+        OutputIterator result, UnaryOperation op) {
+        while (first1 != last1) {
+            *result++ = op(*first1++);
+        }
+
+        return result;
+    }
+
+2. binary
+    template <class InputIterator1, class InputIterator2,
+        class OutputIterator, class UnaryOperation>
+    OutputIterator transfrom(InputIterator first1, InputIterator2 first2,
+        InputIterator last1, OutputIterator result, UnaryOperation op) {
+        while (first1 != last1) {
+            *result++ = op(*first1++, *first2++);
+        }
+
+        return result;
+    }
+
+三、区间最大最小值
+签名: max_element/min_element(iterator1/address, iterator2/address)
+返回值: iterator或地址, 加上解引用 *得到最大最小值
+
+四、复制函数
+签名: copy(iterator1, iterator2, dst_iterator)
+对比: copy和memcpy, memcpy是byte by byte, 而copy是ele by ele
